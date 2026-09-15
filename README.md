@@ -361,7 +361,25 @@ SHAP analysis was used to understand model behavior and feature importance. Thes
 
 ## Tableau Dashboards
 
-The project includes two Tableau dashboards designed to communicate model performance and operational insights to non-technical stakeholders.
+The project includes two Tableau dashboards designed to translate the modeling results into operationally useful views.
+
+### Executive Readmission Dashboard
+
+Provides an overview of readmission patterns, patient risk, and key operational indicators.
+
+![Executive Readmission Dashboard](reports/images/Executive_Readmission_Dashboard.png)
+
+### Patient & Operations Dashboard
+
+Provides a more detailed view of patient characteristics, utilization patterns, and predicted readmission risk.
+
+![Patient & Operations Dashboard](reports/images/Patient_operations_dashboard.png)
+
+The Tableau workbook is available in:
+
+```text
+tableau/Healthcare_Readmission_Intelligence.twb
+```
 
 ### 1. Executive Readmission Dashboard
 
