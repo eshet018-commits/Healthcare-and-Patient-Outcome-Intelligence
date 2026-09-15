@@ -228,27 +228,49 @@ PostgreSQL credentials are not stored in the repository. A local database connec
 
 ## Project Structure
 
-```text
+```text id="p7b3k4"
 healthcare-intelligence/
 │
 ├── data/
-│   ├── raw/
-│   └── processed/
+│   ├── raw/                         # Original dataset (not committed)
+│   └── processed/                   # Reproducible intermediate datasets
 │
-├── models/
+├── models/                          # Generated model artifacts
+│
+├── notebooks/
+│   └── 01_end_to_end_readmission_analysis.ipynb
+│
+├── reports/
+│   ├── model_performance.csv
+│   ├── rf_feature_importance.csv
+│   ├── risk_category_summary.csv
+│   └── images/
+│       ├── Executive_Readmission_Dashboard.png
+│       └── Patient_operations_dashboard.png
 │
 ├── sql/
+│   ├── 02_data_quality_and_analysis.sql
+│   └── 03_analytical_views.sql
 │
 ├── src/
+│   ├── data_preparation.py
+│   ├── feature_engineering.py
+│   ├── modeling.py
+│   ├── evaluation.py
+│   ├── database.py
+│   └── run_pipeline.py
 │
 ├── tableau/
 │   └── Healthcare_Readmission_Intelligence.twb
 │
+├── .gitignore
 ├── README.md
-└── .gitignore
+└── requirements.txt
 ```
 
-Raw and processed CSV data are excluded from version control where appropriate to keep the repository focused on reproducible code, analytical logic, model artifacts, and documentation.
+The repository separates exploratory analysis from reusable source code and generated analytical outputs.
+
+Raw healthcare data and generated model binaries are excluded from version control. The documented pipeline recreates the processed datasets, model artifacts, and analytical reports locally.
 
 ## Data Preparation
 
@@ -450,14 +472,14 @@ This project is intended as a **portfolio analytics and machine learning exercis
 
 Several limitations should be considered:
 
-* The dataset contains historical encounters from **1999–2008**, so patterns may not reflect current healthcare practices, technologies, or patient populations.
-* The target represents whether an encounter was readmitted within 30 days, but the dataset does not contain all clinical, social, or operational factors that may influence readmission.
-* The model's predictive performance was moderate, with a test-set **ROC-AUC of approximately 0.6438** and **PR-AUC of approximately 0.2005**.
-* The selected 0.14 threshold was chosen using F1 score on the project evaluation workflow and is **not clinically validated**.
-* Feature importance and SHAP results describe predictive relationships and should not be interpreted as causal effects.
+* The dataset contains historical encounters from **1999–2008**, so observed patterns may not reflect current healthcare practices, technologies, workflows, or patient populations.
+* The target indicates whether an encounter was readmitted within 30 days, but the dataset does not capture all clinical, social, behavioral, or operational factors that may influence readmission.
+* On the held-out patient-level test set, the calibrated Random Forest achieved a **ROC-AUC of 0.6438** and **PR-AUC of 0.2005**. These results indicate that the model provides measurable predictive signal but should not be interpreted as evidence of clinical readiness.
+* The selected **0.14 decision threshold** was chosen using the project's evaluation workflow based on F1 score and was not clinically validated.
+* Feature importance and SHAP results describe **predictive relationships**, not causal effects.
 * The dataset does not provide reliable actual healthcare cost information, so financial impact was not fabricated or inferred.
 
-Any real-world deployment would require additional validation, monitoring, fairness assessment, prospective evaluation, and clinical and organizational review before being used to support patient-care decisions.
+Real-world deployment would require additional validation using contemporary and representative data, monitoring for model drift, subgroup and fairness assessment, prospective evaluation, calibration assessment, and clinical and organizational review before any patient-care application.
 
 ## Results Summary
 
