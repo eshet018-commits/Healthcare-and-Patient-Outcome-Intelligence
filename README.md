@@ -1,41 +1,57 @@
 # Healthcare Operations & Patient Outcome Intelligence
 
-An end-to-end healthcare analytics project that uses historical hospital encounter data to analyze 30-day readmission patterns, identify patient and utilization characteristics associated with higher risk, and build an interactive decision-support dashboard.
+An end-to-end healthcare data science project that analyzes **30-day hospital readmission**, identifies patterns associated with higher observed readmission rates, develops a calibrated machine learning risk model, and delivers interactive Tableau dashboards for operational analysis.
 
-The project combines **PostgreSQL, SQL, Python, machine learning, SHAP, Tableau, and Git/GitHub** to demonstrate a complete data science workflow from raw data preparation through model development and stakeholder-facing visualization.
+The project combines **Python, PostgreSQL, SQL, scikit-learn, XGBoost, SHAP, Tableau, and Git/GitHub** across the full workflow—from raw data preparation and statistical analysis through model development, interpretation, and stakeholder-facing visualization.
+
+## Key Findings
+
+| Finding                              | Result                                  |
+| ------------------------------------ | --------------------------------------- |
+| Patient-level test set               | **14,304 patients / 20,289 encounters** |
+| Random Forest ROC-AUC                | **0.6438**                              |
+| Random Forest PR-AUC                 | **0.2005**                              |
+| Recall at selected 0.14 threshold    | **43.6%**                               |
+| Precision at selected 0.14 threshold | **17.9%**                               |
+| F1 score at selected 0.14 threshold  | **0.254**                               |
+| High + Very High Risk encounters     | **26.0% of test encounters**            |
+| Strong recurring signal              | **Prior healthcare utilization**        |
+
+The results are based on a **held-out patient-level test set**. Model outputs are intended for analytical and decision-support purposes rather than clinical diagnosis or treatment decisions.
 
 ## Business Problem
 
 Hospital readmissions can create operational challenges for healthcare organizations, including increased demand for inpatient resources and difficulty planning beds and staffing.
 
-This project investigates:
+This project investigates three questions:
 
-* What patient and healthcare utilization characteristics are associated with 30-day readmission?
-* How well can historical encounter information identify encounters with elevated readmission risk?
-* How can model results be communicated through an interactive analytics dashboard?
+* Which patient and healthcare utilization characteristics are associated with observed 30-day readmission?
+* How effectively can historical encounter information identify encounters with elevated readmission risk?
+* How can analytical and model results be translated into dashboards that are useful for operational audiences?
 
 ## Dataset
 
 This project uses the **Diabetes 130-US Hospitals for Years 1999–2008** dataset, which contains approximately 101,000 hospital encounters from multiple U.S. hospitals.
 
-The original dataset includes information about patient demographics, diagnoses, admission characteristics, medications, prior healthcare utilization, and hospital stay details.
+The dataset includes information about demographics, diagnoses, admission characteristics, medications, prior healthcare utilization, and hospital stay details.
 
 For this project, the target variable was transformed into a binary outcome:
 
 * **1** = readmitted within 30 days (`<30`)
 * **0** = not readmitted within 30 days
 
-The analysis focuses on information that could reasonably be available at or around the time of admission. Patient identifiers such as `encounter_id` and `patient_nbr` were excluded from direct model features.
+The modeling workflow focuses on encounter information used as predictive features. Direct patient and encounter identifiers such as `patient_nbr` and `encounter_id` were not used as model features.
 
 ## Project Objectives
 
 1. **Prepare and transform the data** for reliable analysis and modeling.
-2. **Use SQL and PostgreSQL** to clean, organize, summarize, and query healthcare encounter data.
+2. **Use SQL and PostgreSQL** to organize, summarize, and analyze healthcare encounter data.
 3. **Perform exploratory data analysis** to identify patterns in readmission and healthcare utilization.
-4. **Engineer meaningful features** such as prior utilization, prior inpatient visits, diagnosis categories, and complexity indicators.
+4. **Engineer meaningful features** such as prior utilization, prior inpatient visits, diagnosis categories, and encounter-complexity indicators.
 5. **Build and evaluate machine learning models** for 30-day readmission risk.
-6. **Interpret model behavior** using SHAP-based feature analysis.
-7. **Communicate findings through Tableau** dashboards designed for operational and analytical audiences.
+6. **Calibrate predicted probabilities** and evaluate decision thresholds for the imbalanced classification problem.
+7. **Interpret model behavior** using SHAP-based feature analysis.
+8. **Communicate findings through Tableau** dashboards for operational and analytical audiences.
 
 ## End-to-End Workflow
 
@@ -56,7 +72,9 @@ Patient-Level Train/Test Split
         ↓
 Machine Learning Modeling
         ↓
-Calibration & Threshold Selection
+Probability Calibration
+        ↓
+Decision Threshold Analysis
         ↓
 SHAP Model Interpretation
         ↓
@@ -64,6 +82,21 @@ PostgreSQL Risk Tables & Views
         ↓
 Tableau Analytics Dashboards
 ```
+
+## Technology Stack
+
+| Technology       | Purpose                                                                                                 |
+| ---------------- | ------------------------------------------------------------------------------------------------------- |
+| **Python**       | Data preparation, exploratory analysis, statistical analysis, feature engineering, and machine learning |
+| **pandas**       | Data manipulation and cleaning                                                                          |
+| **NumPy**        | Numerical operations and data processing                                                                |
+| **SciPy**        | Statistical analysis and hypothesis testing                                                             |
+| **scikit-learn** | Preprocessing, model development, evaluation, calibration, and threshold analysis                       |
+| **XGBoost**      | Gradient-boosted model comparison                                                                       |
+| **SHAP**         | Model interpretability and feature contribution analysis                                                |
+| **PostgreSQL**   | Data storage, SQL transformations, analytical views, and prediction analysis                            |
+| **Tableau**      | Interactive dashboards and stakeholder-facing visualization                                             |
+| **Git / GitHub** | Version control and reproducible project development                                                    |
 
 ## Technology Stack
 
