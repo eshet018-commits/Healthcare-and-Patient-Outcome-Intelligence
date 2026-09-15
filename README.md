@@ -317,28 +317,32 @@ There was **zero patient overlap** between the training and test sets.
 
 ### Models Evaluated
 
-Three classification approaches were compared:
+Three classification approaches were evaluated:
 
 * Logistic Regression
 * Random Forest
 * XGBoost
 
-Model performance was evaluated using metrics including **ROC-AUC, PR-AUC, precision, recall, F1 score, and accuracy**.
+Model performance was evaluated using **ROC-AUC, PR-AUC, precision, recall, F1 score, and accuracy**.
 
-Because 30-day readmissions were relatively uncommon, PR-AUC and recall were considered particularly important alongside ROC-AUC.
+Because 30-day readmissions were relatively uncommon, **PR-AUC and recall** were considered alongside ROC-AUC when evaluating model behavior.
 
 ### Model Performance
 
-| Model               | ROC-AUC | PR-AUC | Precision | Recall |    F1 |
-| ------------------- | ------: | -----: | --------: | -----: | ----: |
-| Logistic Regression |   0.637 |  0.189 |     0.162 |  0.522 | 0.247 |
-| Random Forest       |   0.6438 |  0.202 |        0. |        |       |
+The final reproducible workflow uses a calibrated Random Forest with a **0.14 decision threshold**.
+
+| Model                    | ROC-AUC | PR-AUC | Precision | Recall |    F1 |
+| ------------------------ | ------: | -----: | --------: | -----: | ----: |
+| Logistic Regression      |   0.637 |  0.189 |     0.162 |  0.522 | 0.247 |
+| Calibrated Random Forest |   0.644 |  0.201 |     0.179 |  0.436 | 0.254 |
+
+The Random Forest probabilities were calibrated using **sigmoid calibration with `CalibratedClassifierCV`**. The decision threshold of **0.14** was selected from the evaluated thresholds based on the highest observed F1 score.
 
 ## Model Interpretability
 
 SHAP (SHapley Additive exPlanations) was used to examine which features contributed most strongly to the Random Forest's predictions.
 
-The analysis grouped related engineered variables back to broader original concepts to make the results easier to interpret.
+The analysis grouped related engineered variables back to broader concepts to make the results easier to interpret.
 
 ### Top Predictive Feature Groups
 
@@ -361,31 +365,15 @@ SHAP analysis was used to understand model behavior and feature importance. Thes
 
 ## Tableau Dashboards
 
-The project includes two Tableau dashboards designed to translate the modeling results into operationally useful views.
+The project includes two Tableau dashboards designed to translate the analytical and modeling results into operationally useful views.
 
 ### Executive Readmission Dashboard
 
-Provides an overview of readmission patterns, patient risk, and key operational indicators.
+Provides a high-level view of readmission patterns, patient risk, and operational indicators.
 
 ![Executive Readmission Dashboard](reports/images/Executive_Readmission_Dashboard.png)
 
-### Patient & Operations Dashboard
-
-Provides a more detailed view of patient characteristics, utilization patterns, and predicted readmission risk.
-
-![Patient & Operations Dashboard](reports/images/Patient_operations_dashboard.png)
-
-The Tableau workbook is available in:
-
-```text
-tableau/Healthcare_Readmission_Intelligence.twb
-```
-
-### 1. Executive Readmission Dashboard
-
-The executive dashboard provides a high-level view of predicted and observed 30-day readmission risk.
-
-It includes:
+The dashboard includes:
 
 * Total encounters in the model test set
 * Observed 30-day readmission rate
@@ -396,13 +384,15 @@ It includes:
 * Average prior healthcare utilization by risk category
 * Average length of stay by risk category
 
-A key finding is the separation across predicted risk groups. Observed readmission increased from approximately **7.3% in the Lower Risk group to 23.8% in the Very High Risk group**.
+Observed readmission increased from approximately **7.3% in the Lower Risk group to 23.8% in the Very High Risk group**.
 
-### 2. Patient & Operations Risk Analysis
+### Patient & Operations Risk Analysis
 
-The second dashboard focuses on patient and utilization characteristics associated with observed readmission.
+Provides a more detailed view of patient characteristics and utilization patterns associated with observed readmission.
 
-It includes:
+![Patient & Operations Dashboard](reports/images/Patient_operations_dashboard.png)
+
+The dashboard includes:
 
 * Observed readmission rate by age group
 * Observed readmission rate by admission type
@@ -414,6 +404,12 @@ It includes:
 Within the model test set, observed readmission increased from approximately **7.5% among encounters with no prior healthcare utilization to 25.9% among encounters with 6+ prior visits**.
 
 The dashboards are intended to support **exploratory and decision-support analysis**, not clinical diagnosis or treatment decisions.
+
+The Tableau workbook is available at:
+
+```text
+tableau/Healthcare_Readmission_Intelligence.twb
+```
 
 ## Limitations & Responsible Use
 
