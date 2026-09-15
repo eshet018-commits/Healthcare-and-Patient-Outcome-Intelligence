@@ -1,0 +1,46 @@
+{
+    "model_type": "Random Forest Classifier",
+    "calibrated_model": "Random Forest with sigmoid probability calibration",
+    "target": "readmitted_30",
+    "prediction_target": "30-day hospital readmission",
+    "selected_threshold": 0.14,
+    "features": [
+        "age_numeric",
+        "gender",
+        "race",
+        "admission_type",
+        "admission_source",
+        "number_outpatient",
+        "number_emergency",
+        "number_inpatient",
+        "total_prior_visits",
+        "prior_inpatient_visit",
+        "diag_1_category",
+        "diag_2_category",
+        "diag_3_category",
+        "diabetes_diagnosis",
+        "diagnosis_category_count",
+        "payer_code",
+        "medical_specialty"
+    ],
+    "train_patients": 57214,
+    "test_patients": 14304,
+    "train_encounters": 81477,
+    "test_encounters": 20289,
+    "evaluation": {
+        "accuracy": 0.7312336734190941,
+        "precision": 0.18066900038895373,
+        "recall": 0.4283079760258183,
+        "f1": 0.2541376008753932,
+        "roc_auc": 0.6439,
+        "pr_auc": 0.2012
+    },
+    "calibration": {
+        "method": "sigmoid",
+        "calibration_model": "CalibratedClassifierCV"
+    },
+    "threshold_selection": {
+        "criterion": "highest F1 among evaluated thresholds",
+        "threshold": 0.14
+    }
+}

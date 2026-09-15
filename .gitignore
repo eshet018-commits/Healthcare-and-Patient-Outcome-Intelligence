@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment / credentials
+.env
+*.env
+
+# Raw/private data
+data/raw/
+*.csv
+
+# Python-generated model files
+*.pkl
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Tableau temporary files
+*.tmp
+*.temp
+*.twbr

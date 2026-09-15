@@ -1,0 +1,845 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20262.26.0819.2015                               -->
+<workbook _.fcp.WorkbookFingerprinting.true...author-id='f4a8c6992b47bd0b71ec09ba43cbcaae66920d2f60501eaa7781244ce2eae0bb' _.fcp.WorkbookFingerprinting.true...creator-author-id='f4a8c6992b47bd0b71ec09ba43cbcaae66920d2f60501eaa7781244ce2eae0bb' _.fcp.WorkbookFingerprinting.true...creator-license-type='free' _.fcp.WorkbookFingerprinting.true...creator-machine-id='650b7422e5f5dbf2e28d98e4909b3206363531cf63b07e2d71b9c2eb895078b6' _.fcp.WorkbookFingerprinting.true...license-type='free' _.fcp.WorkbookFingerprinting.true...machine-id='650b7422e5f5dbf2e28d98e4909b3206363531cf63b07e2d71b9c2eb895078b6' original-version='18.1' source-build='2026.2.2 (20262.26.0819.2015)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <AnimationOnByDefault />
+    <MarkAnimation />
+    <ObjectModelEncapsulateLegacy />
+    <ObjectModelTableType />
+    <SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+    <_.fcp.WorkbookFingerprinting.true...WorkbookFingerprinting />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='vw_readmission_risk (healthcare_intelligence)' inline='true' name='federated.18q3sqs1dbtf5q1efi2sj0f1y8av' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='localhost' name='postgres.1h8etm61hgbkrd12w53gy00a5d0w'>
+            <connection authentication='username-password' class='postgres' dbname='healthcare_intelligence' one-time-sql='' port='5432' server='localhost' username='postgres' />
+          </named-connection>
+        </named-connections>
+        <relation connection='postgres.1h8etm61hgbkrd12w53gy00a5d0w' name='vw_readmission_risk' table='[public].[vw_readmission_risk]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>encounter_id</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[encounter_id]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>encounter_id</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>patient_nbr</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[patient_nbr]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>patient_nbr</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>19</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>age</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[age]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>age</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>20</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>age_numeric</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[age_numeric]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>age_numeric</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>gender</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[gender]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>gender</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>20</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>race</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[race]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>race</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>50</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>admission_type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[admission_type]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>admission_type</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>100</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>admission_source</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[admission_source]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>admission_source</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>150</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>discharge_disposition</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[discharge_disposition]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>discharge_disposition</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>150</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>time_in_hospital</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[time_in_hospital]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>time_in_hospital</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>number_outpatient</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[number_outpatient]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>number_outpatient</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>number_emergency</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[number_emergency]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>number_emergency</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>number_inpatient</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[number_inpatient]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>number_inpatient</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>total_prior_visits</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[total_prior_visits]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>total_prior_visits</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>prior_inpatient_visit</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[prior_inpatient_visit]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>prior_inpatient_visit</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>diag_1_category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[diag_1_category]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>diag_1_category</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>100</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>diag_2_category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[diag_2_category]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>diag_2_category</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>100</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>diag_3_category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[diag_3_category]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>diag_3_category</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>100</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>medical_specialty</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[medical_specialty]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>medical_specialty</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>100</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>payer_code</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[payer_code]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>payer_code</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>50</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>num_medications</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[num_medications]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>num_medications</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>number_diagnoses</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[number_diagnoses]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>number_diagnoses</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>predicted_readmission_risk</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[predicted_readmission_risk]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>predicted_readmission_risk</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>17</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>risk_flag</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[risk_flag]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>risk_flag</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>risk_category</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[risk_category]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>risk_category</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>30</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>actual_readmitted_30</remote-name>
+            <remote-type>3</remote-type>
+            <local-name>[actual_readmitted_30]</local-name>
+            <parent-name>[vw_readmission_risk]</parent-name>
+            <remote-alias>actual_readmitted_30</remote-alias>
+            <ordinal>26</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>10</precision>
+            <contains-null>true</contains-null>
+            <object-id>[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]</object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='30-Day Readmission Rate' datatype='real' name='[Calculation_1184494235643904]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='AVG([actual_readmitted_30])' />
+      </column>
+      <column caption='Average Predicted Risk' datatype='real' name='[Calculation_1184494237102081]' role='measure' type='quantitative'>
+        <calculation class='tableau' formula='AVG([predicted_readmission_risk])' />
+      </column>
+      <column caption='vw_readmission_risk' datatype='table' name='[__tableau_internal_object_id__].[vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0]' role='measure' type='quantitative' />
+      <column caption='Actual Readmitted 30' datatype='integer' name='[actual_readmitted_30]' role='measure' type='quantitative' />
+      <column caption='Admission Source' datatype='string' name='[admission_source]' role='dimension' type='nominal' />
+      <column caption='Admission Type' datatype='string' name='[admission_type]' role='dimension' type='nominal' />
+      <column caption='Age' datatype='string' name='[age]' role='dimension' type='nominal' />
+      <column caption='Age Numeric' datatype='integer' name='[age_numeric]' role='measure' type='quantitative' />
+      <column caption='Diag 1 Category' datatype='string' name='[diag_1_category]' role='dimension' type='nominal' />
+      <column caption='Diag 2 Category' datatype='string' name='[diag_2_category]' role='dimension' type='nominal' />
+      <column caption='Diag 3 Category' datatype='string' name='[diag_3_category]' role='dimension' type='nominal' />
+      <column caption='Discharge Disposition' datatype='string' name='[discharge_disposition]' role='dimension' type='nominal' />
+      <column caption='Encounter Id' datatype='integer' name='[encounter_id]' role='dimension' type='ordinal' />
+      <column caption='Gender' datatype='string' name='[gender]' role='dimension' type='nominal' />
+      <column caption='Medical Specialty' datatype='string' name='[medical_specialty]' role='dimension' type='nominal' />
+      <column caption='Num Medications' datatype='integer' name='[num_medications]' role='measure' type='quantitative' />
+      <column caption='Number Diagnoses' datatype='integer' name='[number_diagnoses]' role='measure' type='quantitative' />
+      <column caption='Number Emergency' datatype='integer' name='[number_emergency]' role='measure' type='quantitative' />
+      <column caption='Number Inpatient' datatype='integer' name='[number_inpatient]' role='measure' type='quantitative' />
+      <column caption='Number Outpatient' datatype='integer' name='[number_outpatient]' role='measure' type='quantitative' />
+      <column caption='Patient Nbr' datatype='integer' name='[patient_nbr]' role='dimension' type='ordinal' />
+      <column caption='Payer Code' datatype='string' name='[payer_code]' role='dimension' type='nominal' />
+      <column caption='Predicted Readmission Risk' datatype='real' name='[predicted_readmission_risk]' role='measure' type='quantitative' />
+      <column caption='Prior Inpatient Visit' datatype='integer' name='[prior_inpatient_visit]' role='measure' type='quantitative' />
+      <column caption='Race' datatype='string' name='[race]' role='dimension' type='nominal' />
+      <column caption='Risk Category' datatype='string' name='[risk_category]' role='dimension' type='nominal' />
+      <column caption='Risk Flag' datatype='integer' name='[risk_flag]' role='measure' type='quantitative' />
+      <column caption='Time In Hospital' datatype='integer' name='[time_in_hospital]' role='measure' type='quantitative' />
+      <column caption='Total Prior Visits' datatype='integer' name='[total_prior_visits]' role='measure' type='quantitative' />
+      <layout dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+      <field-sort-info field-sort-order-type='custom-order'>
+        <field-sort-custom-order field='encounter_id' />
+        <field-sort-custom-order field='patient_nbr' />
+        <field-sort-custom-order field='age' />
+        <field-sort-custom-order field='age_numeric' />
+        <field-sort-custom-order field='gender' />
+        <field-sort-custom-order field='race' />
+        <field-sort-custom-order field='admission_type' />
+        <field-sort-custom-order field='admission_source' />
+        <field-sort-custom-order field='discharge_disposition' />
+        <field-sort-custom-order field='time_in_hospital' />
+        <field-sort-custom-order field='number_outpatient' />
+        <field-sort-custom-order field='number_emergency' />
+        <field-sort-custom-order field='number_inpatient' />
+        <field-sort-custom-order field='total_prior_visits' />
+        <field-sort-custom-order field='prior_inpatient_visit' />
+        <field-sort-custom-order field='diag_1_category' />
+        <field-sort-custom-order field='diag_2_category' />
+        <field-sort-custom-order field='diag_3_category' />
+        <field-sort-custom-order field='medical_specialty' />
+        <field-sort-custom-order field='payer_code' />
+        <field-sort-custom-order field='num_medications' />
+        <field-sort-custom-order field='number_diagnoses' />
+        <field-sort-custom-order field='predicted_readmission_risk' />
+        <field-sort-custom-order field='risk_flag' />
+        <field-sort-custom-order field='risk_category' />
+        <field-sort-custom-order field='actual_readmitted_30' />
+        <field-sort-custom-order field='Calculation_1184494237102081' />
+        <field-sort-custom-order field='Calculation_1184494235643904' />
+        <field-sort-custom-order field='Geometry (generated)' />
+        <field-sort-custom-order field='Latitude (generated)' />
+        <field-sort-custom-order field='Longitude (generated)' />
+        <field-sort-custom-order field=':Measure Names' />
+        <field-sort-custom-order field='Multiple Values' />
+      </field-sort-info>
+      <object-graph>
+        <objects>
+          <object caption='vw_readmission_risk' id='vw_readmission_risk_39F2D90E2D6D41799963BAE3F53171D0'>
+            <properties context=''>
+              <relation connection='postgres.1h8etm61hgbkrd12w53gy00a5d0w' name='vw_readmission_risk' table='[public].[vw_readmission_risk]' type='table' />
+            </properties>
+          </object>
+        </objects>
+      </object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='vw_readmission_risk (healthcare_intelligence)' name='federated.18q3sqs1dbtf5q1efi2sj0f1y8av' />
+          </datasources>
+          <datasource-dependencies datasource='federated.18q3sqs1dbtf5q1efi2sj0f1y8av'>
+            <column-instance column='[encounter_id]' derivation='CountD' name='[ctd:encounter_id:qk]' pivot='key' type='quantitative' />
+            <column caption='Encounter Id' datatype='integer' name='[encounter_id]' role='dimension' type='ordinal' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.18q3sqs1dbtf5q1efi2sj0f1y8av].[ctd:encounter_id:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{65780353-B8B9-449F-A200-A35E8825C3D8}' />
+    </worksheet>
+    <worksheet name='Sheet 2'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='vw_readmission_risk (healthcare_intelligence)' name='federated.18q3sqs1dbtf5q1efi2sj0f1y8av' />
+          </datasources>
+          <datasource-dependencies datasource='federated.18q3sqs1dbtf5q1efi2sj0f1y8av'>
+            <column caption='30-Day Readmission Rate' datatype='real' name='[Calculation_1184494235643904]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='AVG([actual_readmitted_30])' />
+            </column>
+            <column caption='Actual Readmitted 30' datatype='integer' name='[actual_readmitted_30]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_1184494235643904]' derivation='User' name='[usr:Calculation_1184494235643904:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.18q3sqs1dbtf5q1efi2sj0f1y8av].[usr:Calculation_1184494235643904:qk]' value='p0.00%' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.18q3sqs1dbtf5q1efi2sj0f1y8av].[usr:Calculation_1184494235643904:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{DA3F1ADA-4D68-41CD-B946-C5FFE9E4A92B}' />
+    </worksheet>
+    <worksheet name='Sheet 3'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='vw_readmission_risk (healthcare_intelligence)' name='federated.18q3sqs1dbtf5q1efi2sj0f1y8av' />
+          </datasources>
+          <datasource-dependencies datasource='federated.18q3sqs1dbtf5q1efi2sj0f1y8av'>
+            <column caption='Average Predicted Risk' datatype='real' name='[Calculation_1184494237102081]' role='measure' type='quantitative'>
+              <calculation class='tableau' formula='AVG([predicted_readmission_risk])' />
+            </column>
+            <column caption='Predicted Readmission Risk' datatype='real' name='[predicted_readmission_risk]' role='measure' type='quantitative' />
+            <column-instance column='[Calculation_1184494237102081]' derivation='User' name='[usr:Calculation_1184494237102081:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <aggregation value='true' />
+        </view>
+        <style>
+          <style-rule element='cell'>
+            <format attr='text-format' field='[federated.18q3sqs1dbtf5q1efi2sj0f1y8av].[usr:Calculation_1184494237102081:qk]' value='p0.00%' />
+          </style-rule>
+        </style>
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.18q3sqs1dbtf5q1efi2sj0f1y8av].[usr:Calculation_1184494237102081:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{12910E23-D99F-441C-A840-3B942F59C486}' />
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.18q3sqs1dbtf5q1efi2sj0f1y8av].[none:encounter_id:ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+      <simple-id uuid='{B77BAE87-2F0C-4637-9689-2C7A73A94D0B}' />
+    </window>
+    <window class='worksheet' name='Sheet 2'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{1350C214-DD76-4CC0-B9C1-1DBFA418398A}' />
+    </window>
+    <window class='worksheet' maximized='true' name='Sheet 3'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{CD8893B5-F68C-46DF-8930-F82704E944B5}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='48' name='Sheet 1' width='128'>
+      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
+      LSNaCwAAAABJRU5ErkJggg==
+    </thumbnail>
+    <thumbnail height='48' name='Sheet 2' width='128'>
+      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
+    </thumbnail>
+    <thumbnail height='48' name='Sheet 3' width='128'>
+      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
+      ANKqgQVCVYUhAAAAAElFTkSuQmCC
+    </thumbnail>
+  </thumbnails>
+</workbook>
