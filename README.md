@@ -79,6 +79,120 @@ Tableau Analytics Dashboards
 | **Tableau**      | Interactive dashboards and stakeholder-facing visualization                                             |
 | **Git / GitHub** | Version control and project collaboration                                                               |
 
+## Reproducibility
+
+The project is designed so that the core data preparation and modeling workflow can be reproduced on another machine without relying on machine-specific file paths.
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/eshet018-commits/healthcare-intelligence.git
+cd healthcare-intelligence
+```
+
+### 2. Create a Python environment
+
+Windows:
+
+```powershell
+python -m venv .venv
+.venv\Scripts\activate
+```
+
+macOS/Linux:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+### 3. Install dependencies
+
+```bash
+python -m pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 4. Add the dataset
+
+Download the **Diabetes 130-US Hospitals for Years 1999–2008** dataset and place the raw CSV at:
+
+```text
+data/raw/diabetic_data.csv
+```
+
+The raw healthcare dataset is intentionally excluded from version control.
+
+### 5. Run the data-preparation workflow
+
+```bash
+python -m src.data_preparation
+```
+
+This creates:
+
+```text
+data/processed/diabetic_clean_stage1.csv
+```
+
+### 6. Run feature engineering
+
+```bash
+python -m src.feature_engineering
+```
+
+This creates:
+
+```text
+data/processed/diabetic_features.csv
+```
+
+### 7. Run the modeling pipeline
+
+```bash
+python -m src.run_pipeline
+```
+
+The pipeline performs a patient-level 80/20 train/test split, trains the Random Forest model, calibrates its probabilities using sigmoid calibration, evaluates the selected 0.14 decision threshold, and generates model artifacts and analytical reports.
+
+Generated outputs include:
+
+```text
+models/
+├── random_forest.joblib
+├── calibrated_random_forest.joblib
+└── rf_preprocessor.joblib
+
+reports/
+├── model_performance.csv
+├── risk_category_summary.csv
+└── rf_feature_importance.csv
+```
+
+The generated datasets and model artifacts are excluded from version control because they can be recreated from the documented workflow.
+
+### 8. Reproduce the exploratory analysis
+
+Open:
+
+```text
+notebooks/01_end_to_end_readmission_analysis.ipynb
+```
+
+The notebook contains the exploratory analysis, statistical investigation, model comparison, calibration analysis, SHAP interpretation, and Tableau preparation workflow.
+
+### PostgreSQL and Tableau
+
+The SQL scripts in `sql/` contain the analytical queries and views used for the PostgreSQL portion of the project.
+
+The Tableau workbook is located at:
+
+```text
+tableau/Healthcare_Readmission_Intelligence.twb
+```
+
+PostgreSQL credentials are not stored in the repository. A local database connection must be configured separately when reproducing the database portion of the workflow.
+
 ## Project Structure
 
 ```text
@@ -218,7 +332,7 @@ Because 30-day readmissions were relatively uncommon, PR-AUC and recall were con
 | Model               | ROC-AUC | PR-AUC | Precision | Recall |    F1 |
 | ------------------- | ------: | -----: | --------: | -----: | ----: |
 | Logistic Regression |   0.637 |  0.189 |     0.162 |  0.522 | 0.247 |
-| Random Forest       |   0.644 |  0.202 |        0. |        |       |
+| Random Forest       |   0.6438 |  0.202 |        0. |        |       |
 
 ## Model Interpretability
 
@@ -264,7 +378,7 @@ It includes:
 * Average prior healthcare utilization by risk category
 * Average length of stay by risk category
 
-A key finding is the separation across predicted risk groups. Observed readmission increased from approximately **7.3% in the Lower Risk group to 24.3% in the Very High Risk group**.
+A key finding is the separation across predicted risk groups. Observed readmission increased from approximately **7.3% in the Lower Risk group to 23.8% in the Very High Risk group**.
 
 ### 2. Patient & Operations Risk Analysis
 
@@ -291,7 +405,7 @@ Several limitations should be considered:
 
 * The dataset contains historical encounters from **1999–2008**, so patterns may not reflect current healthcare practices, technologies, or patient populations.
 * The target represents whether an encounter was readmitted within 30 days, but the dataset does not contain all clinical, social, or operational factors that may influence readmission.
-* The model's predictive performance was moderate, with a test-set **ROC-AUC of approximately 0.644** and **PR-AUC of approximately 0.201**.
+* The model's predictive performance was moderate, with a test-set **ROC-AUC of approximately 0.6438** and **PR-AUC of approximately 0.2005**.
 * The selected 0.14 threshold was chosen using F1 score on the project evaluation workflow and is **not clinically validated**.
 * Feature importance and SHAP results describe predictive relationships and should not be interpreted as causal effects.
 * The dataset does not provide reliable actual healthcare cost information, so financial impact was not fabricated or inferred.
@@ -303,9 +417,9 @@ Any real-world deployment would require additional validation, monitoring, fairn
 The project produced several notable analytical and modeling results:
 
 * Prior healthcare utilization showed the strongest and most consistent relationship with observed 30-day readmission. In the exploratory analysis, readmission increased from **8.2%** among encounters with no prior visits to **25.5%** among encounters with 6+ prior visits.
-* The calibrated Random Forest achieved a **ROC-AUC of 0.644** and **PR-AUC of 0.201** on the held-out patient-level test set.
-* At the selected **0.14 decision threshold**, the model achieved **42.8% recall**, **18.1% precision**, and an **F1 score of 0.254**.
-* **25.3% of test-set encounters** were classified as High or Very High Risk.
+* The calibrated Random Forest achieved a **ROC-AUC of 0.6438** and **PR-AUC of 0.2005** on the held-out patient-level test set.
+* At the selected **0.14 decision threshold**, the model achieved **43.6% recall**, **17.9% precision**, and an **F1 score of 0.254**.
+* Approximately **26.0%** of test-set encounters were classified as High or Very High Risk.
 * SHAP analysis identified prior inpatient utilization, inpatient utilization, and total prior healthcare utilization among the strongest predictive feature groups.
 * Tableau dashboards translated these analytical results into an interactive format for executive and operational audiences.
 

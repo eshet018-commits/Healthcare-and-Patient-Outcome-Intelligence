@@ -16,8 +16,12 @@ env/
 data/raw/
 *.csv
 
+# Keep reproducible project reports
+!reports/*.csv
+
 # Python-generated model files
 *.pkl
+*.joblib
 
 # OS files
 .DS_Store
