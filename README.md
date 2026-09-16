@@ -216,7 +216,67 @@ The notebook contains the exploratory analysis, statistical investigation, model
 
 ### PostgreSQL and Tableau
 
+PostgreSQL is used as the analytical database layer for the project. The database workflow is optional; the Python modeling pipeline can be reproduced without a PostgreSQL installation.
+
 The SQL scripts in `sql/` contain the analytical queries and views used for the PostgreSQL portion of the project.
+
+To reproduce the PostgreSQL database, first create a local database named:
+
+```text
+healthcare_intelligence
+```
+
+Copy the provided environment template:
+
+```text
+.env.example
+```
+
+to a local file named:
+
+```text
+.env
+```
+
+Then configure the local PostgreSQL connection in `.env`:
+
+```text
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=healthcare_intelligence
+DB_USER=postgres
+DB_PASSWORD=your_password
+```
+
+Replace `your_password` with the password for your local PostgreSQL installation.
+
+The `.env` file contains local credentials and is excluded from version control. The `.env.example` file is provided only as a safe configuration template and does not contain real credentials.
+
+After running the Python modeling pipeline and generating the processed data and prediction outputs, the PostgreSQL tables can be loaded intentionally with:
+
+```bash
+python -c "from src.load_database import load_database; load_database(replace_existing=True)"
+```
+
+The loader creates or replaces two analytical tables:
+
+* `encounters` — 101,766 encounter-level records containing selected patient, utilization, diagnosis, and operational features.
+* `readmission_predictions` — 20,289 held-out test encounters containing predicted readmission risk, risk category, and observed outcome.
+
+The loader validates that all required columns are available before modifying the database. Running the module directly with:
+
+```bash
+python -m src.load_database
+```
+
+does not replace existing tables because explicit replacement authorization is required.
+
+After loading the tables, the SQL scripts can be used for data-quality checks, analytical summaries, and reusable PostgreSQL views:
+
+```text
+sql/02_data_quality_and_analysis.sql
+sql/03_analytical_views.sql
+```
 
 The Tableau workbook is located at:
 
@@ -224,29 +284,27 @@ The Tableau workbook is located at:
 tableau/Healthcare_Readmission_Intelligence.twb
 ```
 
-PostgreSQL credentials are not stored in the repository. A local database connection must be configured separately when reproducing the database portion of the workflow.
+PostgreSQL credentials are not stored in the repository. Tableau database connections must be configured locally when reproducing the visualization workflow.
 
 ## Project Structure
 
-```text id="p7b3k4"
+```text
 healthcare-intelligence/
 │
 ├── data/
-│   ├── raw/                         # Original dataset (not committed)
-│   └── processed/                   # Reproducible intermediate datasets
+│   ├── raw/                              # Original dataset (not committed)
+│   └── processed/                        # Reproducible intermediate datasets
 │
-├── models/                          # Generated model artifacts
+├── models/                               # Generated model artifacts
 │
 ├── notebooks/
 │   └── 01_end_to_end_readmission_analysis.ipynb
 │
 ├── reports/
+│   ├── images/                           # Tableau dashboard screenshots
 │   ├── model_performance.csv
 │   ├── rf_feature_importance.csv
-│   ├── risk_category_summary.csv
-│   └── images/
-│       ├── Executive_Readmission_Dashboard.png
-│       └── Patient_operations_dashboard.png
+│   └── risk_category_summary.csv
 │
 ├── sql/
 │   ├── 02_data_quality_and_analysis.sql
@@ -254,23 +312,23 @@ healthcare-intelligence/
 │
 ├── src/
 │   ├── data_preparation.py
-│   ├── feature_engineering.py
-│   ├── modeling.py
-│   ├── evaluation.py
 │   ├── database.py
+│   ├── evaluation.py
+│   ├── feature_engineering.py
+│   ├── load_database.py
+│   ├── modeling.py
 │   └── run_pipeline.py
 │
 ├── tableau/
 │   └── Healthcare_Readmission_Intelligence.twb
 │
+├── .env.example                          # Database configuration template
 ├── .gitignore
 ├── README.md
 └── requirements.txt
 ```
 
-The repository separates exploratory analysis from reusable source code and generated analytical outputs.
-
-Raw healthcare data and generated model binaries are excluded from version control. The documented pipeline recreates the processed datasets, model artifacts, and analytical reports locally.
+Raw and processed CSV data are excluded from version control where appropriate to keep the repository focused on reproducible code, analytical logic, reports, documentation, and visualization assets. Local database credentials are stored in `.env`, which is also excluded from version control.
 
 ## Data Preparation
 

@@ -22,6 +22,36 @@ AGE_MAP = {
     "[90-100)": 95,
 }
 
+DISCHARGE_DISPOSITION_MAP = {
+    1: "Discharged to Home",
+    2: "Transferred to Short-Term Hospital",
+    3: "Transferred to Skilled Nursing Facility",
+    4: "Transferred to Intermediate Care Facility",
+    5: "Transferred to Another Inpatient Facility",
+    6: "Home with Home Health Care",
+    7: "Left Against Medical Advice",
+    8: "Home with IV Provider",
+    9: "Admitted as Inpatient",
+    10: "Neonate",
+    11: "Expired",
+    12: "Still Patient",
+    13: "Hospice - Home",
+    14: "Hospice - Medical Facility",
+    15: "Transferred to Swing Bed",
+    16: "Transferred to Inpatient Rehab",
+    17: "Transferred to Long-Term Care Hospital",
+    18: "Expired",
+    19: "Expired",
+    20: "Expired",
+    21: "Expired",
+    22: "Transferred to Inpatient Rehab",
+    23: "Transferred to Long-Term Care Hospital",
+    24: "Transferred to Nursing Facility",
+    25: "Not Mapped",
+    26: "Unknown",
+    27: "Transferred to Inpatient Rehab",
+    28: "Transferred to Federal Health Care Facility",
+}
 
 MEDICATION_COLUMNS = [
     "metformin",
@@ -104,6 +134,20 @@ def categorize_diagnosis(code: object) -> str:
 
     return "Other"
 
+def add_discharge_disposition(
+    df: pd.DataFrame,
+) -> pd.DataFrame:
+    """Map discharge disposition IDs to readable categories."""
+
+    result = df.copy()
+
+    result["discharge_disposition"] = (
+        result["discharge_disposition_id"]
+        .map(DISCHARGE_DISPOSITION_MAP)
+        .fillna("Unknown")
+    )
+
+    return result
 
 def add_age_feature(df: pd.DataFrame) -> pd.DataFrame:
     """Convert age ranges into numeric midpoint values."""
@@ -235,6 +279,14 @@ def add_complexity_features(df: pd.DataFrame) -> pd.DataFrame:
             result["num_medications"] >= medication_75th
         ).astype(int)
 
+    if "time_in_hospital" in result.columns:
+        los_75th = result["time_in_hospital"].quantile(
+            0.75
+        )
+
+        result["long_stay"] = (
+            result["time_in_hospital"] >= los_75th
+        ).astype(int)
     return result
 
 
@@ -251,6 +303,7 @@ def engineer_features(
 
     df = pd.read_csv(input_path)
 
+    df = add_discharge_disposition(df)
     df = add_age_feature(df)
     df = add_utilization_features(df)
     df = add_medication_features(df)
